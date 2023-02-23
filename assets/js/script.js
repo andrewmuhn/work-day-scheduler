@@ -1,14 +1,53 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that the code isn't run until the browser has finished rendering all the elements in the html.
-let currentDay = $('#currentDay');
+
 
 $(() => {
+  //DOM Elements
+  let currentDayEl = $('#currentDay');
+  let timeBlockEl = $('.time-block');
+
+  // let hour9El = $('#hour-9');
+  // let hour10El = $('#hour-10');
+  // let hour11El = $('#hour-11');
+  // let hour12El = $('#hour-12');
+  // let hour1El = $('#hour-13');
+  // let hour2El = $('#hour-14');
+  // let hour3El = $('#hour-15');
+  // let hour4El = $('#hour-16');
+  // let hour5El = $('#hour-17');
+
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in local storage. HINT: What does `this` reference in the click listener function? How can DOM traversal be used to get the "hour-x" id of the time-block containing the button that was clicked? How might the id be useful when saving the description in local storage?
 
 
 
   // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id attribute of each time-block be used to conditionally add or remove the past, present, and future classes? How can Day.js be used to get the current hour in 24-hour time?
+  // block by comparing the id to the current hour. HINTS: How can the id attribute of each time-block be used to conditionally to add or remove the past, present, and future classes? How can Day.js be used to get the current hour in 24-hour time?
+
+  //gets current hour in 01-24 format
+  let currentHour = dayjs().format('HH');
+
+  //function that for each element with class 'time-block' will get the id of that element and check if the last two digits (ex: id="hour-10" will use 10) are greater, equal to, or less than the current hour. it will then add the appropriate class name past, present, or future and remove the others
+  $.map($(timeBlockEl), (i) => {
+
+    // setting the last two digits of the id to a variable (used as a comparator against current hour)
+    let index = $(i).attr('id').slice(-2);
+
+    //the whole id of each element used as a selector to set classes
+    let hourId = $(i).attr('id');
+    console.log(typeof hourId)
+    if (index > currentHour) {
+      $(`#${hourId}`).removeClass('past present').addClass('future');
+      console.log($(`#${hourId}`).attr('class'));
+    } else if (index === currentHour) {
+      $(`#${hourId}`).removeClass('future past').addClass('present');
+      console.log($(`#${hourId}`).attr('class'));
+    } else {
+      $(`#${hourId}`).removeClass('present future').addClass('past');
+      console.log($(`#${hourId}`).attr('class'));
+    }
+  });
 
 
 
@@ -32,6 +71,6 @@ $(() => {
     daySuffix = 'th';
   }
 
-  currentDay = currentDay.text(dayjs().format(`dddd, MMMM D[${daySuffix}]`));
+  currentDayEl = currentDayEl.text(dayjs().format(`dddd, MMMM D[${daySuffix}]`));
 
 });
