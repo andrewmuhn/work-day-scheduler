@@ -21,8 +21,7 @@ $(() => {
   let daySuffix;
   let dayOfMonth = dayjs().format('D');
   let endDigit = dayOfMonth.slice(-1);
-  console.log(dayOfMonth);
-  console.log(endDigit);
+
   if (endDigit === '1') {
     daySuffix = 'st';
   } else if (endDigit === '2') {
