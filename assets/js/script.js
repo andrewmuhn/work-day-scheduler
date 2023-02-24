@@ -1,41 +1,31 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that the code isn't run until the browser has finished rendering all the elements in the html.
 
-
 $(() => {
   //DOM Elements
   let currentDayEl = $('#currentDay');
   let timeBlockEl = $('.time-block');
 
-  // TODO: This code should use the id in the containing time-block as a key to save the user input in local storage. HINT: What does `this` reference in the click listener function? How can DOM traversal be used to get the "hour-x" id of the time-block containing the button that was clicked? How might the id be useful when saving the description in local storage?
-  // function listens for click events on the save button. 
+  // function listens for click events on the save button and grabs the parent time-blocks' id and the text inside the description. It then sends those two values to the saveTasksToStorage function
   const handleSaveTask = (event) => {
 
     let saveButton = $(event.currentTarget);
     let hourId = saveButton.parent().attr('id');
     let description = saveButton.siblings('.description').val().trim();
-    // let newTask = {
-    //   hour: hourId,
-    //   task: description
-    // };
-    // console.log(newTask);
-    // let tasks = readTasksFromStorage();
-    // tasks.push(newTask);
 
     saveTasksToStorage(hourId, description);
   };
 
+  //function gets key value pairs from the readTasksFromStorage function and displays the description (value) on the screen.
   const printTasks = (hourId, tasks) => {
     let description = $('.description');
     //emptys current tasks
     description.empty();
 
     $(`#${hourId}`).children(description).val(tasks);
-    console.log(hourId);
-    console.log(tasks);
 
   }
 
-  // function grabs tasks from local storage if they exist otherwise creates an empty array
+  // function grabs tasks from local storage if they exist otherwise creates an empty string. then sends the key value pair to printTasks function
   const readTasksFromStorage = () => {
 
     for (let i = 0; i < timeBlockEl.length; i++) {
@@ -48,11 +38,12 @@ $(() => {
         tasks = '';
       }
       printTasks(hourId, tasks);
+
     }
 
   };
 
-  // function sets tasks to local storage
+  // function sets tasks to local storage by taking the variable grabbed from the handleSaveTask function
   const saveTasksToStorage = (hour, tasks) => {
     localStorage.setItem(hour, JSON.stringify(tasks));
     console.log(tasks);
