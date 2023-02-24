@@ -24,7 +24,14 @@ $(() => {
     saveTasksToStorage(hourId, description);
   };
 
-  const printTasks = () => {
+  const printTasks = (hourId, tasks) => {
+    let description = $('.description');
+    //emptys current tasks
+    description.empty();
+
+    $(`#${hourId}`).children(description).val(tasks);
+    console.log(hourId);
+    console.log(tasks);
 
   }
 
@@ -33,7 +40,6 @@ $(() => {
 
     for (let i = 0; i < timeBlockEl.length; i++) {
       let hourId = timeBlockEl.eq(i).attr('id');
-      console.log(hourId);
 
       let tasks = localStorage.getItem(hourId);
       if (tasks) {
@@ -41,10 +47,8 @@ $(() => {
       } else {
         tasks = '';
       }
-      console.log(tasks);
-
+      printTasks(hourId, tasks);
     }
-    // return tasks;
 
   };
 
