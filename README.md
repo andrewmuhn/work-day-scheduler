@@ -30,4 +30,7 @@
 
 Project of Andrew Muhn
 
+Used stackoverflow as inspiration for using .map() function in the timeBlockColor function in script.js file.
+[Map Stackoverflow](https://stackoverflow.com/questions/31851922/get-the-id-of-elements-with-same-class)
+
 Completed as part of EdX bootcamp
