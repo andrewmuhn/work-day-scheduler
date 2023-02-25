@@ -2,33 +2,35 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+- The goal was to make a simple schedule app that could receive tasks, save and render after a page refresh.
+- I built this project to practice jquery development aswell as utilizing jqueryUI, and dayjs.
+- This allows me the abilty to work on the plethora of web apps using jquery
+- I learned how to utilize the map() function
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+[Link to Deployed Application](https://andrewmuhn.github.io/work-day-scheduler/)
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+![start of the application](assets/images/Start.png)
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
 
-	[Link to Deployed Application]()
+- demonstration of app saving, updating, and refreshing to show how information entered persists.
+	- must hit save button to save or update information otherwise information will be lost on refresh or revert back to previous saved task
 
-	
+![gif of application](assets/images/applicationgif.gif)
+
+## Features
+
+- date at the top of application loads current date
+- coloring dependent on current time of day,
+	- ie. if it is 12:32pm: 9-11am time blocks are gray, 12pm time block is red, and 1-5pm timeblocks are green
 
 ## Credits
 
 Project of Andrew Muhn
 
+Used stackoverflow as inspiration for using .map() function in the timeBlockColor function in script.js file.
+[Map Stackoverflow](https://stackoverflow.com/questions/31851922/get-the-id-of-elements-with-same-class)
+
 Completed as part of EdX bootcamp
-
-## Tests
-
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
